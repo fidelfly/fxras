@@ -8,7 +8,7 @@ import {LocaleProvider} from 'antd'
 import { createStore, applyMiddleware } from 'redux';
 import { addLocaleData, IntlProvider }from 'react-intl'
 import thunk from 'redux-thunk';
-import reducer from './reducer';
+import reducer from './reducers';
 import Web from './router/web'
 import { InitData } from './initialization'
 
@@ -23,7 +23,7 @@ const render = Component => {
     ReactDOM.render(
         <Provider store={store}>
             <LocaleProvider locale={appLocale.antd}>
-                <IntlProvider locle={appLocale.locale} messages={appLocale.messages}>
+                <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
                     <AppContainer>
                         <Component store={store} />
                     </AppContainer>

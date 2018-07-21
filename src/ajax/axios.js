@@ -2,6 +2,7 @@ import axios from 'axios';
 import {AxiosUtil} from '../utils'
 import {message} from 'antd';
 import authorize from '../authorize'
+import { WsError, WsException } from '../errors'
 
 export const get = ({url, msg = 'Interface Error', headers}) =>
     axios.get(url, headers).then(res => res.data).catch(err => {
@@ -18,14 +19,26 @@ const refreshToken = (res) => {
     }
 }
 
+export const resolveData = (res) => {
+    let data = res.data;
+    if (data && data.errorCode) {
+        return Promise.reject(new WsError(data.errorCode, data.errorMessage));
+    }
+    return data;
+}
 
+export const resolveError = (error) => {
+    let status = error.response.status;
+    let data = error.response.data;
+    return Promise.reject(new WsException(status, data.error, data.error_description))
+}
 
-export const checkResponse = (res) => {
+/*export const checkResponse = (res) => {
     if(res.errorCode != null) {
         return Promise.reject(res)
     }
     return res;
-}
+}*/
 
 /*const errorCatch = (err) => {
     refreshToken(err.response);
@@ -34,24 +47,10 @@ export const checkResponse = (res) => {
     return err
 }*/
 
-axios.interceptors.response.use(function(response) {
-   /* refreshToken(response);
-    return {...response.data, response: response}*/
-}, function(error) {
-   /* if (error.response.status === 401) {
-        localStorage.removeItem("access-token");
-        localStorage.removeItem("tokenId");
-        history.push('/login');
-    } else {
-        refreshToken(error.response);
-    }
-    error.errorCode = 0;
-    error.errorMessage = error.response.data;
-    return Promise.reject(error);*/
-})
+axios.interceptors.response.use(resolveData, resolveError)
 
 axios.interceptors.request.use(function(config) {
-    let accessToken = authorize.getAccessKey();
+    let accessToken = authorize.getAccessToken();
     if (accessToken) {
         config = config || {}
         let headers = config.headers || {};
@@ -64,7 +63,7 @@ axios.interceptors.request.use(function(config) {
 })
 
 export const post = (url, data, config = DefaultRequestConfig) => {
-    axios.post(url, data, config)
+    return axios.post(url, data, config)
 }
 
 export const request = (method, url, data, config = DefaultRequestConfig) => {

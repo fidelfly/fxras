@@ -5,6 +5,10 @@ import { withAuthorizeCheck } from '../authorize'
 import { Button } from 'antd'
 import { Redirect } from 'react-router-dom'
 
+const messages = defineMessages({
+
+})
+
 class App extends Component {
   render() {
     return (

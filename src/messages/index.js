@@ -1,0 +1,1 @@
+export { appMessage } from './messages'

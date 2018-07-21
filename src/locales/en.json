@@ -1,3 +1,9 @@
 {
-  "button": "Button"
+  "button" : "Button",
+  "app.name" : "M18 SAAS Admin",
+  "login.user" : "User Name",
+  "login.pwd" : "Password",
+  "login.loginBtn" : "Login",
+  "login.user.warning" : "Please input User Name",
+  "login.pwd.warning" : "Please input password!"
 }

@@ -24,6 +24,7 @@ var InitData = {
     locale : getLang(),
     clientCode: getClientCode(),
     authVerified: false,
+    tokenInfo : {}
 }
 
 export  {

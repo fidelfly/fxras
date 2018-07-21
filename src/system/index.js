@@ -1,4 +1,4 @@
-import * as CookieKeys from './keys'
+import * as CookieKeys from './cookieKeys'
 import * as Params from './params'
 import WsPath from './webservice'
 
