@@ -1,0 +1,21 @@
+[
+  {
+    "id": "app.name",
+    "description": "Name of App",
+    "defaultMessage": "M18 SAAS Admin"
+  },
+  {
+    "id": "app.name.short",
+    "description": "Short Name of App",
+    "defaultMessage": "M18"
+  },
+  {
+    "id": "app.copyright",
+    "description": "Copyright description",
+    "defaultMessage": "M18 SAAS Admin © Multiable Company 2018"
+  },
+  {
+    "id": "app.logout",
+    "defaultMessage": "Logout"
+  }
+]

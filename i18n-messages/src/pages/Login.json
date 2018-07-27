@@ -1,0 +1,26 @@
+[
+  {
+    "id": "login.user",
+    "description": "Placeholder for user name input",
+    "defaultMessage": "User Name"
+  },
+  {
+    "id": "login.user.warning",
+    "description": "",
+    "defaultMessage": "Please input User Name"
+  },
+  {
+    "id": "login.pwd",
+    "description": "Placeholder for password input",
+    "defaultMessage": "Password"
+  },
+  {
+    "id": "login.pwd.warning",
+    "description": "",
+    "defaultMessage": "Please input password!"
+  },
+  {
+    "id": "login.loginBtn",
+    "defaultMessage": "Login"
+  }
+]

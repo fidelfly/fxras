@@ -4,25 +4,12 @@ import {message} from 'antd';
 import authorize from '../authorize'
 import { WsError, WsException } from '../errors'
 
-export const get = ({url, msg = 'Interface Error', headers}) =>
-    axios.get(url, headers).then(res => res.data).catch(err => {
-        console.log(err);
-        message.warn(msg);
-    });
-
 const DefaultRequestConfig = AxiosUtil.JSONRequestConfig
-
-const refreshToken = (res) => {
-    let token = res.headers['access-token'];
-    if (token) {
-        localStorage.setItem('access-token', token)
-    }
-}
 
 export const resolveData = (res) => {
     let data = res.data;
-    if (data && data.errorCode) {
-        return Promise.reject(new WsError(data.errorCode, data.errorMessage));
+    if (data && (data.errorCode || data.error)) {
+        return Promise.reject(new WsError(data.errorCode || data.error, data.errorMessage || data["error_description"]));
     }
     return data;
 }
@@ -30,58 +17,72 @@ export const resolveData = (res) => {
 export const resolveError = (error) => {
     let status = error.response.status;
     let data = error.response.data;
-    return Promise.reject(new WsException(status, data.error, data.error_description))
+    if(data) {
+        if (data.errorCode || data.error) {
+            return Promise.reject(new WsException(status, data.errorCode || data.error, data.errorMessage || data["error_description"]))
+        } else {
+            return Promise.reject(new WsException(status, `Server(${status})`, data.toString()))
+        }
+    }
+    return Promise.reject(error)
 }
 
-/*export const checkResponse = (res) => {
-    if(res.errorCode != null) {
-        return Promise.reject(res)
+export const showErrorMessage = (error) => {
+    if(error && error.code && error.message) {
+        message.error(error.message);
+    } else {
+        Promise.reject(error)
     }
-    return res;
-}*/
-
-/*const errorCatch = (err) => {
-    refreshToken(err.response);
-    console.log(err);
-    //message.warn(err)
-    return err
-}*/
+}
 
 axios.interceptors.response.use(resolveData, resolveError)
 
 axios.interceptors.request.use(function(config) {
-    let accessToken = authorize.getAccessToken();
-    if (accessToken) {
-        config = config || {}
-        let headers = config.headers || {};
-        headers['Access-Token'] = accessToken;
-        config.headers = headers;
-    }
+    config = config || {}
+    let headers = config.headers || {};
+    config.headers = authorize.fillAuthorizeHeader(headers);
     return config;
 }, function(error) {
     return Promise.reject(error);
 })
 
 export const post = (url, data, config = DefaultRequestConfig) => {
-    return axios.post(url, data, config)
+    if(config.withAuthInject === false) {
+        return axios.post(url, data, config);
+    }
+    return authRequest("post", url, data, config);
 }
 
-export const request = (method, url, data, config = DefaultRequestConfig) => {
+export const get = (url, config = DefaultRequestConfig) => {
+    if(config.withAuthInject === false) {
+        return axios.get(url, config)
+    }
+    return authRequest("get", url, undefined, config);
+}
+
+const authRequest = (method, url, data, config = DefaultRequestConfig) => {
+    return authorize.checkAuthorizeBeforeAjax(url).then(() => {
+        return request(method, url, data, config)
+    }).catch((error) => {
+        if(error &&error.code &&error.code === authorize.TokenExpiredCode) {
+            return authorize.refreshToken().then((data) => {
+                return request(method, url, data, config);
+            })
+        }
+        return Promise.reject(error);
+    })
+}
+
+const request = (method, url, data, config = DefaultRequestConfig) => {
     method = method.toUpperCase();
     if (method === 'GET') {
         return axios.get(url, config)
     } else if (method === 'POST') {
         return axios.post(url, data, config)
     } else if (method === 'DELETE') {
-        config.data = data;
         return axios.delete(url, config)
     } else if (method === 'PUT') {
         return axios.put(url, data, config);
-    } else if (method === 'OPTIONS') {
-        config.method = 'OPTIONS';
-        config.url = url;
-        config.data = data;
-        return axios.request(config)
     }
 }
 

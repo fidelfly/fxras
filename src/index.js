@@ -1,48 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style/index.less';
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
-import { AppContainer } from 'react-hot-loader';
-import {LocaleProvider} from 'antd'
 import { createStore, applyMiddleware } from 'redux';
-import { addLocaleData, IntlProvider }from 'react-intl'
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import Web from './router/web'
+import WebApp from './router/web'
 import { InitData } from './initialization'
 
 const middleware = [thunk];
 const store = createStore(reducer, InitData, applyMiddleware(...middleware));
 
-const appLocale = window.appLocale;
-
-addLocaleData(appLocale.data)
-
 const render = Component => {
     ReactDOM.render(
         <Provider store={store}>
-            <LocaleProvider locale={appLocale.antd}>
-                <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
-                    <AppContainer>
-                        <Component store={store} />
-                    </AppContainer>
-                </IntlProvider>
-            </LocaleProvider>
+            <Component/>
         </Provider>,
         document.getElementById('root')
     );
 };
 
-/*ReactDOM.render(
-    <LocaleProvider locale={appLocale.antd}>
-        <IntlProvider locle={appLocale.locale} messages={appLocale.messages}>
-            <App />
-        </IntlProvider>
-    </LocaleProvider>,
-    document.getElementById('root'));*/
 
-render(Web);
+render(WebApp);
 
 if (module.hot) {
     const orgError = console.error; // eslint-disable-line no-console
@@ -54,7 +34,7 @@ if (module.hot) {
         }
     };
     module.hot.accept('./router/web', () => {
-        render(Web);
+        render(WebApp);
     })
 }
 

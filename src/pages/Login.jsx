@@ -5,6 +5,7 @@ import auth, { withAuthorizeCheck } from '../authorize'
 import {injectIntl, FormattedMessage, defineMessages} from "react-intl";
 import { appMessage} from "../messages";
 import { findErrorMessage } from "../errors";
+import { grantToken } from "../actions";
 
 const loginMessage = defineMessages({
     user : {
@@ -39,11 +40,12 @@ class Login extends React.Component {
     }
 
     handleSubmit = (e) => {
+        let { dispatch } = this.props;
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 auth.requestToken(values).then(data => {
-
+                    dispatch(grantToken(data))
                 }).catch(err => {
                     this.setState({error : err})
                 })

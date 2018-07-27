@@ -9,7 +9,11 @@ export const ExceptionMsg = defineMessages({
 })
 
 export const ErrorMsg = defineMessages({
-
+    "invalid_grant" : {
+        id: "invalid_grant",
+        defaultMessage: 'Password Or User is wrong!',
+        description: 'Info for Password & User Input'
+    }
 })
 
 export const findErrorMessage = (error)=> {

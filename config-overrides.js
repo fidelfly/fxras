@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const appDirectory = fs.realpathSync(process.cwd());
 const path = require('path');
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const packageJSON = require('./package.json')
 
 module.exports = function override(config, env) {
     // do stuff with the webpack i18n...
@@ -23,8 +24,12 @@ module.exports = function override(config, env) {
     }
     config.entry = multiEntry*/
     if (env == 'development') {
-        var multiEntry = {
+        console.log("language: " + packageJSON.language)
+        var multiEntry = packageJSON.language === 'en' ? {
             "en-US" : resolveApp("src/i18n/en-US.js"),
+            main : config.entry,
+        }: {
+            "zh-CN" : resolveApp("src/i18n/zh-CN.js"),
             main : config.entry,
         }
         config.entry = multiEntry
@@ -37,9 +42,9 @@ module.exports = function override(config, env) {
         config.plugins[1] = new HtmlWebpackPlugin({
             inject: true,
             template: resolveApp("public/index.html"),
-            chunks : ['en-US', 'main'],
+            chunks : ['en-US', 'zh-CN', 'main'],
             chunksSortMode: function (chunk1, chunk2) {
-                var order = ['en-US', 'main'];
+                var order = ['en-US', 'zh-CN', 'main'];
                 var order1 = order.indexOf(chunk1.names[0]);
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;
