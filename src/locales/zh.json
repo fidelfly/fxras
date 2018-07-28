@@ -1,7 +1,7 @@
 {
-  "app.name" : "M18 SAAS 管理平台",
-  "app.name.short" : "M18",
-  "app.copyright" : "M18 SAAS 管理平台 © Multiable Company 2018",
+  "app.name" : "Fxstart 管理平台",
+  "app.name.short" : "Fxstrt",
+  "app.copyright" : "Fxstart 管理平台 © lyismydg 2018",
   "app.logout" : "退出",
   "login.user" : "用户名",
   "login.pwd" : "密码",
