@@ -1,7 +1,7 @@
 {
-  "app.name" : "M18 SAAS Admin",
-  "app.name.short" : "M18",
-  "app.copyright" : "M18 SAAS Admin © Multiable Company 2018",
+  "app.name" : "Fxstart Admin",
+  "app.name.short" : "Fxstart",
+  "app.copyright" : "Fxstart Admin © lyismydg 2018",
   "app.logout" : "Logout",
   "login.user" : "User Name",
   "login.pwd" : "Password",
@@ -14,6 +14,6 @@
   "app.user.loading" : "Loading User's Information",
   "menu.app.home" : "Home",
   "menu.app.profile" : "Profiles",
-  "menu.app.profile.user" : "User",
+  "menu.app.profile.user" : "User"
 
 }

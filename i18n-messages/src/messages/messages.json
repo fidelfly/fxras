@@ -2,17 +2,17 @@
   {
     "id": "app.name",
     "description": "Name of App",
-    "defaultMessage": "M18 SAAS Admin"
+    "defaultMessage": "Fxstart Admin"
   },
   {
     "id": "app.name.short",
     "description": "Short Name of App",
-    "defaultMessage": "M18"
+    "defaultMessage": "Fxstart"
   },
   {
     "id": "app.copyright",
     "description": "Copyright description",
-    "defaultMessage": "M18 SAAS Admin © Multiable Company 2018"
+    "defaultMessage": "Fxstart Admin © lyismydg 2018"
   },
   {
     "id": "app.logout",
