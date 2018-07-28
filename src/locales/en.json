@@ -1,3 +1,19 @@
 {
-  "button": "Button"
+  "app.name" : "M18 SAAS Admin",
+  "app.name.short" : "M18",
+  "app.copyright" : "M18 SAAS Admin © Multiable Company 2018",
+  "app.logout" : "Logout",
+  "login.user" : "User Name",
+  "login.pwd" : "Password",
+  "login.loginBtn" : "Login",
+  "login.user.warning" : "Please input User Name",
+  "login.pwd.warning" : "Please input password!",
+  "invalid_grant" : "User or Password is wrong! Please try again.",
+  "app.logout.loading": "You are leaving...",
+  "app.logout.return": "Return to login",
+  "app.user.loading" : "Loading User's Information",
+  "menu.app.home" : "Home",
+  "menu.app.profile" : "Profiles",
+  "menu.app.profile.user" : "User",
+
 }

@@ -14,13 +14,37 @@ const JSONRequestConfig = {
 const FormRequestConfig = {
     transformRequest: [function (data) {
         if (typeof data === "object") {
-            return parseParam(data)
+            return decodeParam(data)
         }
         return data;
     }]
 }
 
-const parseParam = (param, key) => {
+const getURL = (path, params) => {
+    if (params) {
+        let paramText = decodeParams(params);
+        if(paramText.length > 0) {
+            return path + '?' + paramText;
+        }
+    }
+    return path;
+}
+
+const decodeParams = (params) => {
+    var paramText = '';
+    for(let key in params) {
+        let value = params[key]
+        if (value) {
+            if(paramText.length > 0) {
+                paramText += '&';
+            }
+            paramText += decodeParam(value, key);
+        }
+    }
+    return paramText;
+}
+
+const decodeParam = (param, key) => {
     if (param == null) return '';
     var paramStr = '';
     var t = typeof (param);
@@ -32,10 +56,10 @@ const parseParam = (param, key) => {
             if (paramStr) {
                 paramStr += '&';
             }
-            paramStr += parseParam(param[i], k)
+            paramStr += decodeParam(param[i], k)
         }
     }
     return paramStr;
 }
 
-export default {JSONRequestConfig, FormRequestConfig}
+export default {JSONRequestConfig, FormRequestConfig, decodeParams, getURL}

@@ -1,0 +1,18 @@
+{
+  "app.name" : "M18 SAAS 管理平台",
+  "app.name.short" : "M18",
+  "app.copyright" : "M18 SAAS 管理平台 © Multiable Company 2018",
+  "app.logout" : "退出",
+  "login.user" : "用户名",
+  "login.pwd" : "密码",
+  "login.loginBtn" : "登录",
+  "login.user.warning" : "请输入用户名",
+  "login.pwd.warning" : "请输入密码",
+  "invalid_grant" : "用户名或密码错误，请重试！",
+  "app.logout.loading": "你将退出系统...",
+  "app.logout.return": "重新登录",
+  "app.user.loading" : "正在读取用户信息",
+  "menu.app.home" : "首页",
+  "menu.app.profile" : "资料管理",
+  "menu.app.profile.user" : "用户信息"
+}

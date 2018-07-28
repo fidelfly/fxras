@@ -1,0 +1,12 @@
+[
+  {
+    "id": "app.logout.loading",
+    "description": "tip for logout",
+    "defaultMessage": "You are leaving..."
+  },
+  {
+    "id": "app.logout.return",
+    "description": "tip to login",
+    "defaultMessage": "Return to login"
+  }
+]

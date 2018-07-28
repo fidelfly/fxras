@@ -2,6 +2,7 @@
   "name": "awsadweb",
   "version": "0.1.0",
   "private": true,
+  "language": "zh",
   "dependencies": {
     "antd": "^3.6.6",
     "axios": "^0.18.0",
@@ -29,6 +30,11 @@
     "babel-plugin-react-intl": "^2.4.0",
     "react-app-rewire-less": "^2.1.2",
     "react-app-rewired": "^1.5.2"
+  },
+  "proxy": {
+    "/admin" : {
+        "target": "http://localhost:8080"
+    }
   },
   "babel": {
     "presets": [

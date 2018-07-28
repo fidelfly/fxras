@@ -1,0 +1,14 @@
+[
+  {
+    "id": "menu.app.home",
+    "defaultMessage": "Home"
+  },
+  {
+    "id": "menu.app.profile",
+    "defaultMessage": "Profiles"
+  },
+  {
+    "id": "menu.app.profile.user",
+    "defaultMessage": "User"
+  }
+]
