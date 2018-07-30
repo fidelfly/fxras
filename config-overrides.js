@@ -7,7 +7,7 @@ const path = require('path');
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const packageJSON = require('./package.json')
 
-module.exports = function override(config, env) {
+function override(config, env) {
     // do stuff with the webpack i18n...
     config = injectBabelPlugin(['import', {libraryName: 'antd', libraryDirectory: 'es', style: true}], config)
 
@@ -52,4 +52,35 @@ module.exports = function override(config, env) {
         })
     }
     return config;
+};
+
+
+//module.exports = override;
+
+
+// If you want use https, you should use the following code and replace the cert & ca setting
+module.exports = {
+    // The Webpack config to use when compiling your react app for development or production.
+    webpack: override,
+    devServer: function(configFunction) {
+        // Return the replacement function for create-react-app to use to generate the Webpack
+        // Development Server config. "configFunction" is the function that would normally have
+        // been used to generate the Webpack Development server config - you can use it to create
+        // a starting configuration to then modify instead of having to create a config from scratch.
+        return function(proxy, allowedHost) {
+            // Create the default config by calling configFunction with the proxy/allowedHost parameters
+            const config = configFunction(proxy, allowedHost);
+
+            // Change the https certificate options to match your certificate, using the .env file to
+            // set the file paths & passphrase.
+            config.https = {
+                key: fs.readFileSync('./tls/server.key', 'utf8'),  //server cert key
+                cert: fs.readFileSync('./tls/server.crt', 'utf8'), //server cert
+                ca: fs.readFileSync('./tls/ca.crt', 'utf8'),  //ca cert
+            };
+
+            // Return your customised Webpack Development Server config.
+            return config;
+        }
+    }
 };

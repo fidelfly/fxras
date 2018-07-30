@@ -32,8 +32,9 @@
     "react-app-rewired": "^1.5.2"
   },
   "proxy": {
-    "/admin" : {
-        "target": "http://localhost:8080"
+    "/fxgos" : {
+        "target": "https://localhost:8080",
+        "secure": false
     }
   },
   "babel": {

@@ -3,7 +3,7 @@ import {defineMessages} from "react-intl";
 export const ExceptionMsg = defineMessages({
     name : {
         id: 'app.name',
-        defaultMessage: 'M18 SAAS Admin',
+        defaultMessage: 'Fxras Admin',
         description: 'Name of App'
     }
 })
