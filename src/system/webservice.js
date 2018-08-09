@@ -1,11 +1,33 @@
 export const ProtectedPrefix = "/fxgos"
+export const PublicPrefix = "/public"
 
-export const getProtectedPath = function (path) {
+export const getProtectedPath = function (path, ...params) {
     if(path && path.length > 0) {
         if(path.startsWith('/')) {
-            return ProtectedPrefix + path;
+            path = ProtectedPrefix + path;
         } else {
-            return ProtectedPrefix + '/' + path;
+            path = ProtectedPrefix + '/' + path;
+        }
+        if(params && params.length > 0) {
+            for(let i = 0; i < params.length; i++) {
+                path += "/" + params[i].toString()
+            }
+        }
+    }
+    return path;
+}
+
+export const getPublicPath = function (path, ...params) {
+    if(path && path.length > 0) {
+        if(path.startsWith('/')) {
+            return PublicPrefix + path;
+        } else {
+            return PublicPrefix + '/' + path;
+        }
+        if(params && params.length > 0) {
+            for(let i = 0; i < params.length; i++) {
+                path += "/" + params[i].toString()
+            }
         }
     }
     return path;
@@ -31,4 +53,5 @@ export const isProtected = function (url) {
     return false;
 }
 
-export default {OAuth, Resource, Service, ProtectedPrefix, getProtectedPath, isProtected}
+
+export default {OAuth, Resource, Service, ProtectedPrefix, getProtectedPath, getPublicPath, isProtected}
