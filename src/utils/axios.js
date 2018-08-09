@@ -20,6 +20,12 @@ const FormRequestConfig = {
     }]
 }
 
+const FormDataRequestConfig = {
+    transformRequest: [function (data) {
+        return data;
+    }]
+}
+
 const getURL = (path, params) => {
     if (params) {
         let paramText = decodeParams(params);
@@ -28,6 +34,13 @@ const getURL = (path, params) => {
         }
     }
     return path;
+}
+
+const getPath = (basePath, ...params) => {
+    for(let i = 0; i < params.length; i++) {
+        basePath += "/" + params[i].toString()
+    }
+    return basePath;
 }
 
 const decodeParams = (params) => {
@@ -62,4 +75,4 @@ const decodeParam = (param, key) => {
     return paramStr;
 }
 
-export default {JSONRequestConfig, FormRequestConfig, decodeParams, getURL}
+export default {JSONRequestConfig, FormRequestConfig, FormDataRequestConfig, decodeParams, getURL, getPath}

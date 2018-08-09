@@ -12,5 +12,9 @@ export const MenuMessage = defineMessages({
     "menu.app.profile.user" : {
         id: "menu.app.profile.user",
         defaultMessage: "User"
+    },
+    "menu.app.profile.password" : {
+        id: "menu.app.profile.password",
+        defaultMessage: "Change Password"
     }
 });

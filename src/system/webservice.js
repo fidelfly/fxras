@@ -39,11 +39,18 @@ export const OAuth = {
 }
 
 export const Resource = {
-    User : getProtectedPath('user') //"/fxgos/user"
+    User : getProtectedPath('user'), //"/fxgos/user"
+    Module : getProtectedPath('module'),
+    Asset : getProtectedPath('asset')
+}
+
+export const PublicResource = {
+    Asset : getPublicPath('asset')
 }
 
 export const Service = {
-    logout : getProtectedPath('logout') //"/fxgos/logout"
+    logout : getProtectedPath('logout'), //"/fxgos/logout"
+    password : getProtectedPath('password')
 }
 
 export const isProtected = function (url) {
@@ -54,4 +61,4 @@ export const isProtected = function (url) {
 }
 
 
-export default {OAuth, Resource, Service, ProtectedPrefix, getProtectedPath, getPublicPath, isProtected}
+export default {OAuth, Resource, Service, PublicResource, ProtectedPrefix, getProtectedPath, getPublicPath, isProtected}

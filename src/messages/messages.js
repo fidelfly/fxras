@@ -20,4 +20,38 @@ export const appMessage = defineMessages({
         id: 'app.logout',
         defaultMessage: 'Logout',
     },
+    userCode : {
+        id: 'user.code',
+        defaultMessage: 'User Code',
+        description: 'User Code',
+    },
+    userName : {
+        id: 'user.name',
+        defaultMessage: 'User Name',
+        description: 'User Name'
+    },
+    submit : {
+        id: "submit",
+        defaultMessage: "Submit",
+    },
+    cancel : {
+        id: "cancel",
+        defaultMessage: "Cancel",
+    },
+    updateSuccess : {
+        id: "update.success",
+        defaultMessage: "Update successfully."
+    },
+    updateFailed : {
+        id: "update.failed",
+        defaultMessage: "Update failed."
+    },
+    originalPwd: {
+        id: "password.original",
+        defaultMessage: "Original Password"
+    },
+    newPwd: {
+        id: "password.new",
+        defaultMessage: "New Password"
+    }
 })

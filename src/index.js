@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import WebApp from './router/web'
+import {WebApp} from './router'
 import { InitData } from './initialization'
 
 const middleware = [thunk];

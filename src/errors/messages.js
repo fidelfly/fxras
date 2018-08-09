@@ -13,10 +13,18 @@ export const ErrorMsg = defineMessages({
         id: "invalid_grant",
         defaultMessage: 'Password Or User is wrong!',
         description: 'Info for Password & User Input'
+    },
+    "PASSWORD_UNCHANGE" : {
+        id: "error.password.unchange",
+        defaultMessage: "New password is same as the original password."
+    },
+    "INVALID_ORG_PASSWORD" : {
+        id: "error.password.invalidOrgPwd",
+        defaultMessage: "The original password is wrong"
     }
 })
 
-export const findErrorMessage = (error)=> {
+export const findErrorMessage = (error, defaultMsg)=> {
     if(error) {
         let msgId = '';
         if (typeof error === 'string') {
@@ -25,9 +33,9 @@ export const findErrorMessage = (error)=> {
             msgId = error.code;
         }
         if (msgId.length > 0) {
-            return ErrorMsg[msgId] || ExceptionMsg[msgId] || {id: 'errorMsg_No_Key', defaultMessage: error.toString()};
+            return ErrorMsg[msgId] || ExceptionMsg[msgId] || {id: 'errorMsg_No_Key', defaultMessage: defaultMsg || error.toString()};
         } else {
-            return {id: 'errorMsg_No_Key', defaultMessage: error.toString()};
+            return {id: 'errorMsg_No_Key', defaultMessage: defaultMsg || error.toString()};
         }
     }
     return undefined;
