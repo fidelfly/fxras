@@ -1,10 +1,10 @@
 import { AxiosUtil, Cookies } from '../utils'
 import ajax from '../ajax'
-import { WsPath, CookieKeys, StorageKeys } from '../system'
+import { WsPath, CookieKeys, StorageKeys} from '../system'
 import {WsError} from "../errors";
 
 
-const basicAuthKey = makeBasicAuth("awsadmin", "awsadmin123456")
+const basicAuthKey = makeBasicAuth("fxras", "fxras123456")
 
 function makeBasicAuth(user, password) {
     var authKey = user + ':' + password;
@@ -105,7 +105,7 @@ export const TokenExpiredCode = "TOKENEXPIRED"
 
 export function checkAuthorizeBeforeAjax(url) {
     return new Promise(function (resolve, reject) {
-        if(isProtected(url)) {
+        if(WsPath.isProtected(url)) {
             if (isAuthorized()) {
                 if (!isTokenValid()) {
                     return refreshToken();
@@ -116,13 +116,6 @@ export function checkAuthorizeBeforeAjax(url) {
         }
         resolve();
     })
-}
-
-export function isProtected(url) {
-    if(url.startsWith("/admin") && url !== '/admin/token') {
-        return true;
-    }
-    return false;
 }
 
 export function logout() {
