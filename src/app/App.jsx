@@ -14,9 +14,9 @@ import SiderMenu from './SiderMenu'
 import AppHeader from './AppHeader'
 import {appMessage} from "../messages";
 import AppBreadcrumb from "./AppBreadcrumb";
-const { Header, Sider, Content, Footer } = Layout;
 import {AppRouter} from '../router'
 
+const { Header, Sider, Content, Footer } = Layout;
 const messages = defineMessages({
     userLoading : {
         id: 'app.user.loading',

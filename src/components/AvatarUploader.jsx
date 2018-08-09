@@ -2,6 +2,7 @@ import React from "react";
 import {Upload, Icon, message} from 'antd'
 import PropTypes from "prop-types";
 import ajax from "../ajax"
+import {WsPath} from "../system"
 
 class AvatarUploader extends React.Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class AvatarUploader extends React.Component {
                 className="avatar-uploader"
                 showUploadList={false}
                 data={{key: "avatar"}}
-                action="/admin/asset"
+                action={WsPath.Resource.Asset}
                 customRequest={ajax.upload}
                 beforeUpload={this.beforeUpload}
                 onChange={this.handleChange}
