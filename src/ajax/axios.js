@@ -86,68 +86,29 @@ const request = (method, url, data, config = DefaultRequestConfig) => {
     }
 }
 
-export const axiosUpload = (config) => {
-    let axiosConfig = {
-        onUploadProgress: function (progressEvent) {
-            var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-            if(config.onProgress) {
-                config.onProgress.call(this, {percent : percentCompleted});
-            }
+export const upload = ({action, data, file, filename, headers, onError, onProgress, onSuccess, withCredentials,}) => {
+    const formData = new FormData();
+    if (data) {
+        Object.keys(data).map(key => {
+            formData.append(key, data[key]);
+        });
+    }
+    formData.append(filename, file);
+    let config = {
+        withCredentials,
+        headers,
+        onUploadProgress: ({total, loaded}) => {
+            onProgress({percent: Math.round(loaded /total * 100).toFixed(2)}, file);
+        },
+    }
+    authRequest('POST', action, formData, config).then((response) => {
+        onSuccess(response, file)
+    }).catch(onError);
+
+    return {
+        abort() {
+            console.log('upload progress is aborted.');
         }
     }
-    var data = new FormData();
-    data.append(config.filename, config.file);
-    request(config.method || 'POST', config.action, data, axiosConfig).then(res => {
-        if(config.onSuccess) {
-            config.onSuccess.call(this, res);
-        }
-    }).catch(error => {
-        if(config.onError) {
-            config.onError.call(this, error);
-        }
-    })
 }
 
-/*
-export const createWebSocket = (url, config) => {
-    if (!url.startsWith('ws')) {
-        url = 'ws://' + window.location.host + (url.startsWith('/') ? '' : '/') + url;
-    }
-    let accessToken = localStorage.getItem("access-token");
-    if(accessToken) {
-        if (url.indexOf('?') > 0) {
-            url += '&';
-        } else {
-            url += '?';
-        }
-        url += 'token='+ encodeURIComponent(accessToken)
-    }
-    let ws = new WebSocket(url);
-
-    ws.onmessage = function(event) {
-        if(event.data === 'unauthorized') {
-            localStorage.removeItem("access-token");
-            localStorage.removeItem("tokenId");
-            history.push('/login');
-            return;
-        }
-        if(config.onmessage) {
-            config.onmessage(event)
-        }
-
-    }
-
-    if(config.onerror){
-        ws.onerror = config.onerror;
-    };
-
-    if(config.onopen) {
-        ws.onopen = config.onopen;
-    }
-
-    if(config.onclose) {
-        ws.onclose = config.onclose;
-    }
-
-    return ws;
-}*/

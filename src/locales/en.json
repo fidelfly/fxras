@@ -14,6 +14,25 @@
   "app.user.loading" : "Loading User's Information",
   "menu.app.home" : "Home",
   "menu.app.profile" : "Profiles",
-  "menu.app.profile.user" : "User"
-
+  "menu.app.profile.user" : "User",
+  "menu.app.profile.password" : "Change Password",
+  "home.module.list": "Module Information",
+  "module.code" : "Code",
+  "module.name" : "Name",
+  "module.version" : "Version",
+  "module.createTime" : "Create Time",
+  "user.code" : "User Code",
+  "user.name" : "User Name",
+  "submit" : "Submit",
+  "cancel" : "Cancel",
+  "update.success": "Update successfully.",
+  "update.failed" : "Update failed.",
+  "password.original" : "Original Password",
+  "password.new" : "New Password",
+  "password.original.warning" : "Please input original password.",
+  "password.new.warning" : "Please input new password.",
+  "userpage.editBtn" : "Edit",
+  "userpage.name.warnin" : "Please input new name.",
+  "error.password.unchange" : "New password is same as the original password.",
+  "error.password.invalidOrgPwd" : "The original password is wrong."
 }

@@ -24,7 +24,6 @@ function override(config, env) {
     }
     config.entry = multiEntry*/
     if (env == 'development') {
-        console.log("language: " + packageJSON.language)
         var multiEntry = packageJSON.language === 'en' ? {
             "en-US" : resolveApp("src/i18n/en-US.js"),
             main : config.entry,

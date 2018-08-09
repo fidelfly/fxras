@@ -15,6 +15,7 @@ import AppHeader from './AppHeader'
 import {appMessage} from "../messages";
 import AppBreadcrumb from "./AppBreadcrumb";
 const { Header, Sider, Content, Footer } = Layout;
+import {AppRouter} from '../router'
 
 const messages = defineMessages({
     userLoading : {
@@ -66,6 +67,7 @@ class App extends Component {
                 </Header>
                 <Content className={"App-Content"}>
                     <AppBreadcrumb path={this.props.location.pathname}/>
+                    <AppRouter/>
                 </Content>
                 <Footer className="App-Footer">
                     <FormattedMessage {...appMessage.copyright}/>
