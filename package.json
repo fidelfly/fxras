@@ -32,6 +32,11 @@
     "react-app-rewired": "^1.5.2"
   },
   "proxy": {
+    "/fxgos/(websocket|progress)": {
+      "target": "wss://localhost:8080",
+      "ws": true,
+      "secure": false
+    },
     "/(fxgos|public)" : {
         "target": "https://localhost:8080",
         "secure": false

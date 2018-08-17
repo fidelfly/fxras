@@ -46,3 +46,19 @@ export const getQueryVariable =(variable) =>
 
 export const Cookies = window.Cookies
 
+export const immutableAdd = (arrayValue, value) => {
+    return arrayValue.concat(value)
+}
+
+export const immutableRemove = (arrayValue, value) => {
+    let index = arrayValue.indexOf(value)
+    if(index >= 0 ) {
+        let newArray = [...arrayValue];
+        newArray.splice(index, 1)
+        return newArray
+    }
+    return arrayValue
+}
+
+
+
