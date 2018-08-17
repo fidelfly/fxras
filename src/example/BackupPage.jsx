@@ -97,7 +97,7 @@ class BackupPage extends Component {
                 <div className={"Operations"}>
                     <Button type="danger"
                             disabled={this.state.key === record.id && this.state.restoring}
-                            loading={this.state.deleting.indexOf(record.id) >= 0 && this.state.deleting}
+                            loading={this.state.deleting.indexOf(record.id) >= 0}
                             onClick={this.deleteBackup.bind(this, index, record)}>
                         <FormattedMessage {...appMessage.delete}/>
                     </Button>
