@@ -15,7 +15,7 @@ function override(config, env) {
 
     config = rewireLess.withLoaderOptions({
         javascriptEnabled : true,
-        modifyVars: { "@primary-color": "#1DA57A", '@icon-url': '"/assets/iconfont/iconfont"},
+        modifyVars: { "@primary-color": "#1DA57A", '@icon-url': '"/assets/icon/iconfont"'},
     })(config, env)
 
 /*   var multiEntry = {
