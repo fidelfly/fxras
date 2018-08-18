@@ -91,8 +91,10 @@ export const upload = ({action, data, file, filename, headers, onError, onProgre
     if (data) {
         Object.keys(data).map(key => {
             formData.append(key, data[key]);
+            return key
         });
     }
+
     formData.append(filename, file);
     let config = {
         withCredentials,

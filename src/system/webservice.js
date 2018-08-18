@@ -20,9 +20,9 @@ export const getProtectedPath = function (path, ...params) {
 export const getPublicPath = function (path, ...params) {
     if(path && path.length > 0) {
         if(path.startsWith('/')) {
-            return PublicPrefix + path;
+            path = PublicPrefix + path;
         } else {
-            return PublicPrefix + '/' + path;
+            path = PublicPrefix + '/' + path;
         }
         if(params && params.length > 0) {
             for(let i = 0; i < params.length; i++) {
