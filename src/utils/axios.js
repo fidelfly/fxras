@@ -30,7 +30,11 @@ const getURL = (path, params) => {
     if (params) {
         let paramText = decodeParams(params);
         if(paramText.length > 0) {
-            return path + '?' + paramText;
+            if (path.indexOf('?') >= 0) {
+                return path + '&' + paramText
+            } else {
+                return path + '?' + paramText;
+            }
         }
     }
     return path;

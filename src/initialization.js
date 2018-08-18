@@ -33,7 +33,8 @@ var InitData = {
         collapsed : false,
         siderTheme : 'light',
         siderWidth : 250,
-    }
+    },
+    progress : {}
 }
 
 export  {

@@ -63,7 +63,7 @@ class App extends Component {
                         type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
                         onClick={this.toggle}
                     />
-                    <AppHeader userInfo={this.props.userInfo}/>
+                    <AppHeader userInfo={this.props.userInfo} progress={this.props.progress}/>
                 </Header>
                 <Content className={"App-Content"}>
                     <AppBreadcrumb path={this.props.location.pathname}/>
@@ -82,7 +82,8 @@ App.propTypes = {
     userId: PropTypes.number,
     userInfo: PropTypes.object,
     siderTheme: PropTypes.oneOf(['dark', 'light']),
-    siderWidth: PropTypes.number
+    siderWidth: PropTypes.number,
+    progress: PropTypes.object,
 }
 
 const mapStateToProps = state => {
@@ -92,6 +93,7 @@ const mapStateToProps = state => {
         collapsed: state.ui.collapsed,
         siderTheme: state.ui.siderTheme,
         siderWidth: state.ui.siderWidth,
+        progress: state.progress,
     }
 }
 

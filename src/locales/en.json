@@ -34,5 +34,7 @@
   "userpage.editBtn" : "Edit",
   "userpage.name.warnin" : "Please input new name.",
   "error.password.unchange" : "New password is same as the original password.",
-  "error.password.invalidOrgPwd" : "The original password is wrong."
+  "error.password.invalidOrgPwd" : "The original password is wrong.",
+  "error.function.not.support" : "This function is not supported!",
+  "error.resource.locked" : "{user} is doing '{action}', please try again later.",
 }

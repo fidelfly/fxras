@@ -70,6 +70,8 @@ export function refreshToken() {
     if (key && key.length > 0) {
         let ajaxConfig = {...AxiosUtil.FormRequestConfig, headers: {Authorization : basicAuthKey}, withAuthInject: false}
         return ajax.post(WsPath.OAuth.token, {"access_token": getAccessToken(), "grant_type" : "refresh_token", "scope" : "all", "refresh_token" : key}, ajaxConfig).then(setToken).catch(clearToken);
+    } else {
+        return Promise.reject(new Error("Unauthorized"))
     }
 }
 
@@ -98,6 +100,20 @@ export function fillAuthorizeHeader(header) {
         }
     }
     return header
+}
+
+export function fillAuthorizeUrl(url) {
+    if(url) {
+        let accessToken = getAccessToken();
+        if (accessToken) {
+            if(url.indexOf('?') >= 0) {
+                url += '&access_token=' + accessToken
+            } else {
+                url += '?access_token=' + accessToken
+            }
+        }
+    }
+    return url
 }
 
 export const UnauthorizedCode = "UNAUTHORIZED"

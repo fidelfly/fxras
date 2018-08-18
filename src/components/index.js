@@ -1,3 +1,4 @@
 import ModuleList from "./ModuleList";
 import AvatarUploader from "./AvatarUploader"
-export {ModuleList, AvatarUploader}
+import ProgressBar from "./ProgressBar"
+export {ModuleList, AvatarUploader, ProgressBar}

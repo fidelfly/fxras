@@ -34,7 +34,7 @@ class AppHome extends Component {
                                     <Icon type={"sync"}/>
                                 </a>
                             </div>
-                            <ModuleList ref={this.moduleList}/>
+                            <ModuleList tableRef={this.moduleList}/>
                         </Card>
                     </Col>
                 </Row>
