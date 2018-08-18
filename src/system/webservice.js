@@ -41,7 +41,9 @@ export const OAuth = {
 export const Resource = {
     User : getProtectedPath('user'), //"/fxgos/user"
     Module : getProtectedPath('module'),
-    Asset : getProtectedPath('asset')
+    Asset : getProtectedPath('asset'),
+    WebSocket: "/admin/websocket",
+    Progress : "/admin/progress",
 }
 
 export const PublicResource = {
@@ -54,7 +56,7 @@ export const Service = {
 }
 
 export const isProtected = function (url) {
-    if(url.startsWith(ProtectedPrefix) && url !== OAuth.token) {
+    if(url.startsWith("/websocket") || (url.startsWith(ProtectedPrefix) && url !== OAuth.token)) {
         return true;
     }
     return false;

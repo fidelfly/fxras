@@ -9,7 +9,7 @@ const DefaultRequestConfig = AxiosUtil.JSONRequestConfig
 export const resolveData = (res) => {
     let data = res.data;
     if (data && (data.errorCode || data.error)) {
-        return Promise.reject(new WsError(data.errorCode || data.error, data.errorMessage || data["error_description"]));
+        return Promise.reject(new WsError(data.errorCode || data.error, data.errorMessage || data["error_description"], data.data));
     }
     return data;
 }
@@ -19,7 +19,7 @@ export const resolveError = (error) => {
     let data = error.response.data;
     if(data) {
         if (data.errorCode || data.error) {
-            return Promise.reject(new WsException(status, data.errorCode || data.error, data.errorMessage || data["error_description"]))
+            return Promise.reject(new WsException(status, data.errorCode || data.error, data.errorMessage || data["error_description"], data.data))
         } else {
             return Promise.reject(new WsException(status, `Server(${status})`, data.toString()))
         }
@@ -60,6 +60,13 @@ export const get = (url, config = DefaultRequestConfig) => {
     return authRequest("get", url, undefined, config);
 }
 
+export const del = (url, config = DefaultRequestConfig) => {
+    if(config.withAuthInject === false) {
+        return axios.delete(url, config)
+    }
+    return authRequest("delete", url, undefined, config)
+}
+
 const authRequest = (method, url, data, config = DefaultRequestConfig) => {
     return authorize.checkAuthorizeBeforeAjax(url).then(() => {
         return request(method, url, data, config)
@@ -91,6 +98,7 @@ export const upload = ({action, data, file, filename, headers, onError, onProgre
     if (data) {
         Object.keys(data).map(key => {
             formData.append(key, data[key]);
+            return key
         });
     }
     formData.append(filename, file);

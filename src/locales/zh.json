@@ -34,5 +34,7 @@
   "userpage.editBtn" : "编辑",
   "userpage.name.warnin" : "请输入新的名称",
   "error.password.unchange" : "新密码与旧密码一致",
-  "error.password.invalidOrgPwd" : "旧密码错误"
+  "error.password.invalidOrgPwd" : "旧密码错误",
+  "error.function.not.support": "此功能暂不支持",
+  "error.resource.locked" : "{user}正在{action}, 请稍后重试.",
 }
