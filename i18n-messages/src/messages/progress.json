@@ -1,0 +1,22 @@
+[
+  {
+    "id": "backup.progress.backup",
+    "defaultMessage": "Backup..., please wait. (About 5 minutes)"
+  },
+  {
+    "id": "progress.grantlock",
+    "defaultMessage": "Asking for action lock..."
+  },
+  {
+    "id": "backup.progress.readinfo",
+    "defaultMessage": "Load backup information..."
+  },
+  {
+    "id": "backup.delete.progress.removedb",
+    "defaultMessage": "Remove backup data in database..."
+  },
+  {
+    "id": "backup.delete.progress.removefile",
+    "defaultMessage": "Remove backup files..."
+  }
+]

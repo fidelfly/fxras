@@ -37,4 +37,7 @@
   "error.password.invalidOrgPwd" : "The original password is wrong.",
   "error.function.not.support" : "This function is not supported!",
   "error.resource.locked" : "{user} is doing '{action}', please try again later.",
+  "background.progress" : "Running progress in background",
+  "menu.app.demo" : "Demos",
+  "menu.app.demo.progress": "Progress Demo"
 }

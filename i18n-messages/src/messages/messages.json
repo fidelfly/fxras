@@ -1,0 +1,59 @@
+[
+  {
+    "id": "app.name",
+    "description": "Name of App",
+    "defaultMessage": "Fxstart Admin"
+  },
+  {
+    "id": "app.name.short",
+    "description": "Short Name of App",
+    "defaultMessage": "Fxstart"
+  },
+  {
+    "id": "app.copyright",
+    "description": "Copyright description",
+    "defaultMessage": "Fxstart Admin © lyismydg 2018"
+  },
+  {
+    "id": "app.logout",
+    "defaultMessage": "Logout"
+  },
+  {
+    "id": "user.code",
+    "description": "User Code",
+    "defaultMessage": "User Code"
+  },
+  {
+    "id": "user.name",
+    "description": "User Name",
+    "defaultMessage": "User Name"
+  },
+  {
+    "id": "submit",
+    "defaultMessage": "Submit"
+  },
+  {
+    "id": "cancel",
+    "defaultMessage": "Cancel"
+  },
+  {
+    "id": "update.success",
+    "defaultMessage": "Update successfully."
+  },
+  {
+    "id": "update.failed",
+    "defaultMessage": "Update failed."
+  },
+  {
+    "id": "password.original",
+    "defaultMessage": "Original Password"
+  },
+  {
+    "id": "password.new",
+    "defaultMessage": "New Password"
+  },
+  {
+    "id": "background.progress",
+    "defaultMessage": "Running progress in background"
+  }
+]

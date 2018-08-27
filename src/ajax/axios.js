@@ -71,10 +71,14 @@ const authRequest = (method, url, data, config = DefaultRequestConfig) => {
     return authorize.checkAuthorizeBeforeAjax(url).then(() => {
         return request(method, url, data, config)
     }).catch((error) => {
-        if(error &&error.code &&error.code === authorize.TokenExpiredCode) {
-            return authorize.refreshToken().then((data) => {
-                return request(method, url, data, config);
-            })
+        if(error &&error.code) {
+            if (error.code === authorize.TokenExpiredCode) {
+                return authorize.refreshToken().then((data) => {
+                    return request(method, url, data, config);
+                })
+            } else if (error.code === authorize.UnauthorizedCode) {
+                window.location = "/"
+            }
         }
         return Promise.reject(error);
     })

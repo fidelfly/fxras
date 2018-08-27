@@ -37,9 +37,10 @@
       "ws": true,
       "secure": false
     },
-    "/(fxgos|public)" : {
+    "/(fxgos|public|example)" : {
         "target": "https://localhost:8080",
-        "secure": false
+        "secure": false,
+        "proxyTimeout" : 600000
     }
   },
   "babel": {

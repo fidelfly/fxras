@@ -1,0 +1,7 @@
+[
+  {
+    "id": "app.user.loading",
+    "description": "tip for loading",
+    "defaultMessage": "Loading User's Information"
+  }
+]

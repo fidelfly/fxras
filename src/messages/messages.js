@@ -53,5 +53,9 @@ export const appMessage = defineMessages({
     newPwd: {
         id: "password.new",
         defaultMessage: "New Password"
+    },
+    backgroundProgress: {
+        id: "background.progress",
+        defaultMessage: "Running progress in background"
     }
 })

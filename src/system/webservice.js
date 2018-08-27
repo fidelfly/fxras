@@ -42,8 +42,8 @@ export const Resource = {
     User : getProtectedPath('user'), //"/fxgos/user"
     Module : getProtectedPath('module'),
     Asset : getProtectedPath('asset'),
-    WebSocket: "/admin/websocket",
-    Progress : "/admin/progress",
+    WebSocket: getProtectedPath("websocket"),
+    Progress : getProtectedPath("progress"),
 }
 
 export const PublicResource = {

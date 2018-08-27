@@ -16,5 +16,13 @@ export const MenuMessage = defineMessages({
     "menu.app.profile.password" : {
         id: "menu.app.profile.password",
         defaultMessage: "Change Password"
+    },
+    "menu.app.demo" : {
+        id: "menu.app.demo",
+        defaultMessage: "Demos"
+    },
+    "menu.app.demo.progress" : {
+        id: "menu.app.demo.progress",
+        defaultMessage: "Progress Demo"
     }
 });

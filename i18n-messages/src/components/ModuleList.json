@@ -1,0 +1,22 @@
+[
+  {
+    "id": "module.code",
+    "description": "title for module.code in app list",
+    "defaultMessage": "Code"
+  },
+  {
+    "id": "module.name",
+    "description": "title for module.name in module list",
+    "defaultMessage": "Name"
+  },
+  {
+    "id": "module.version",
+    "description": "title for module.version in module list",
+    "defaultMessage": "Version"
+  },
+  {
+    "id": "module.createTime",
+    "description": "title fro module.createTime in module list",
+    "defaultMessage": "Create Time"
+  }
+]

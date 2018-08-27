@@ -1,0 +1,26 @@
+[
+  {
+    "id": "menu.app.home",
+    "defaultMessage": "Home"
+  },
+  {
+    "id": "menu.app.profile",
+    "defaultMessage": "Profiles"
+  },
+  {
+    "id": "menu.app.profile.user",
+    "defaultMessage": "User"
+  },
+  {
+    "id": "menu.app.profile.password",
+    "defaultMessage": "Change Password"
+  },
+  {
+    "id": "menu.app.demo",
+    "defaultMessage": "Demos"
+  },
+  {
+    "id": "menu.app.demo.progress",
+    "defaultMessage": "Progress Demo"
+  }
+]

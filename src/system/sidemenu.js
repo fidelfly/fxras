@@ -8,9 +8,9 @@ export const SiderMenus = [
         ],
     },
     {
-        key: '/app/profile1', title: 'menu.app.profile', icon: 'profile',
+        key: '/app/demo', title: 'menu.app.demo', icon: 'profile',
         sub: [
-            {key: '/app/profile1/user1', title: 'menu.app.profile.user', icon: 'user'},
+            {key: '/app/demo/progress', title: 'menu.app.demo.progress', icon: 'user'},
         ],
     },
 ];

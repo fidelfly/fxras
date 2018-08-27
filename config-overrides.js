@@ -69,7 +69,13 @@ module.exports = {
         return function(proxy, allowedHost) {
             // Create the default config by calling configFunction with the proxy/allowedHost parameters
             const config = configFunction(proxy, allowedHost);
-
+            if(config.proxy.length > 0) {
+                for (let i = 0; i < config.proxy.length; i++) {
+                    let p = config.proxy[i];
+                    p.onProxyReq = (proxyReq, req, res) => req.setTimeout(600000);
+                    config.proxy[i] = p;
+                }
+            }
             // Change the https certificate options to match your certificate, using the .env file to
             // set the file paths & passphrase.
             config.https = {

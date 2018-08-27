@@ -1,0 +1,14 @@
+[
+  {
+    "id": "action.backup.create",
+    "defaultMessage": "create backup"
+  },
+  {
+    "id": "action.backup.restore",
+    "defaultMessage": "restore backup"
+  },
+  {
+    "id": "action.backup.delete",
+    "defaultMessage": "delete backups"
+  }
+]
