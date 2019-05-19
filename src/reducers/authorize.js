@@ -1,6 +1,6 @@
-import {GRANT_TOKEN, CLEAR_TOKEN, LOGOUT} from "../actions";
+import { GRANT_TOKEN, CLEAR_TOKEN, LOGOUT } from "../actions";
 
-export function authVerified( verified = false, action) {
+export function authVerified(verified = false, action) {
     switch (action.type) {
         case GRANT_TOKEN:
             return true;
@@ -8,7 +8,7 @@ export function authVerified( verified = false, action) {
         case CLEAR_TOKEN:
             return false;
         default:
-            return verified
+            return verified;
     }
 }
 

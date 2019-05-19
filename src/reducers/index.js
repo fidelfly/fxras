@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import { authVerified, tokenInfo } from './authorize'
-import { userInfo, language} from "./reducers";
-import ui from './ui'
-import progress from './progress'
+import { combineReducers } from "redux";
+import { authVerified, tokenInfo } from "./authorize";
+import { userInfo, language } from "./reducers";
+import ui from "./ui";
+import progress from "./progress";
 
 export default combineReducers({
     language,
@@ -10,5 +10,5 @@ export default combineReducers({
     tokenInfo,
     userInfo,
     ui,
-    progress
+    progress,
 });

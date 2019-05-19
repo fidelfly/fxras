@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 
 // const Cookies = window.Cookies = JsCookie();
 
-export default Cookies
+export default Cookies;

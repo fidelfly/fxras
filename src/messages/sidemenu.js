@@ -1,28 +1,28 @@
-import {defineMessages} from "react-intl";
+import { defineMessages } from "react-intl";
 
 export const MenuMessage = defineMessages({
-    "menu.app.home" : {
-        id : "menu.app.home",
-        defaultMessage: 'Home'
+    "menu.app.home": {
+        id: "menu.app.home",
+        defaultMessage: "Home",
     },
-    "menu.app.profile" : {
+    "menu.app.profile": {
         id: "menu.app.profile",
-        defaultMessage: "Profiles"
+        defaultMessage: "Profiles",
     },
-    "menu.app.profile.user" : {
+    "menu.app.profile.user": {
         id: "menu.app.profile.user",
-        defaultMessage: "User"
+        defaultMessage: "User",
     },
-    "menu.app.profile.password" : {
+    "menu.app.profile.password": {
         id: "menu.app.profile.password",
-        defaultMessage: "Change Password"
+        defaultMessage: "Change Password",
     },
-    "menu.app.demo" : {
+    "menu.app.demo": {
         id: "menu.app.demo",
-        defaultMessage: "Demos"
+        defaultMessage: "Demos",
     },
-    "menu.app.demo.progress" : {
+    "menu.app.demo.progress": {
         id: "menu.app.demo.progress",
-        defaultMessage: "Progress Demo"
-    }
+        defaultMessage: "Progress Demo",
+    },
 });

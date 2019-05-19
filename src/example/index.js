@@ -1,3 +1,3 @@
-import ProgressDemo from './ProgressDemo'
+import ProgressDemo from "./ProgressDemo";
 
-export {ProgressDemo}
+export { ProgressDemo };

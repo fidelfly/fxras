@@ -1,66 +1,74 @@
-export const ProtectedPrefix = "/fxgos"
-export const PublicPrefix = "/public"
+export const ProtectedPrefix = "/fxgos";
+export const PublicPrefix = "/public";
 
-export const getProtectedPath = function (path, ...params) {
-    if(path && path.length > 0) {
-        if(path.startsWith('/')) {
+export const getProtectedPath = function(path, ...params) {
+    if (path && path.length > 0) {
+        if (path.startsWith("/")) {
             path = ProtectedPrefix + path;
         } else {
-            path = ProtectedPrefix + '/' + path;
+            path = ProtectedPrefix + "/" + path;
         }
-        if(params && params.length > 0) {
-            for(let i = 0; i < params.length; i++) {
-                path += "/" + params[i].toString()
+        if (params && params.length > 0) {
+            for (let i = 0; i < params.length; i++) {
+                path += "/" + params[i].toString();
             }
         }
     }
     return path;
-}
+};
 
-export const getPublicPath = function (path, ...params) {
-    if(path && path.length > 0) {
-        if(path.startsWith('/')) {
+export const getPublicPath = function(path, ...params) {
+    if (path && path.length > 0) {
+        if (path.startsWith("/")) {
             path = PublicPrefix + path;
         } else {
-            path = PublicPrefix + '/' + path;
+            path = PublicPrefix + "/" + path;
         }
-        if(params && params.length > 0) {
-            for(let i = 0; i < params.length; i++) {
-                path += "/" + params[i].toString()
+        if (params && params.length > 0) {
+            for (let i = 0; i < params.length; i++) {
+                path += "/" + params[i].toString();
             }
         }
     }
     return path;
-}
+};
 
 export const OAuth = {
-    authorize : getProtectedPath('authorize'), //"/fxgos/authorize",
-    token : getProtectedPath('token') // "/fxgos/token"
-}
+    authorize: getProtectedPath("authorize"), //"/fxgos/authorize",
+    token: getProtectedPath("token"), // "/fxgos/token"
+};
 
 export const Resource = {
-    User : getProtectedPath('user'), //"/fxgos/user"
-    Module : getProtectedPath('module'),
-    Asset : getProtectedPath('asset'),
+    User: getProtectedPath("user"), //"/fxgos/user"
+    Module: getProtectedPath("module"),
+    Asset: getProtectedPath("asset"),
     WebSocket: getProtectedPath("websocket"),
-    Progress : getProtectedPath("progress"),
-}
+    Progress: getProtectedPath("progress"),
+};
 
 export const PublicResource = {
-    Asset : getPublicPath('asset')
-}
+    Asset: getPublicPath("asset"),
+};
 
 export const Service = {
-    logout : getProtectedPath('logout'), //"/fxgos/logout"
-    password : getProtectedPath('password')
-}
+    logout: getProtectedPath("logout"), //"/fxgos/logout"
+    password: getProtectedPath("password"),
+};
 
-export const isProtected = function (url) {
-    if(url.startsWith("/websocket") || (url.startsWith(ProtectedPrefix) && url !== OAuth.token)) {
+export const isProtected = function(url) {
+    if (url.startsWith("/websocket") || (url.startsWith(ProtectedPrefix) && url !== OAuth.token)) {
         return true;
     }
     return false;
-}
+};
 
-
-export default {OAuth, Resource, Service, PublicResource, ProtectedPrefix, getProtectedPath, getPublicPath, isProtected}
+export default {
+    OAuth,
+    Resource,
+    Service,
+    PublicResource,
+    ProtectedPrefix,
+    getProtectedPath,
+    getPublicPath,
+    isProtected,
+};

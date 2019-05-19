@@ -1,6 +1,6 @@
-import * as utilities from './utils'
+import * as utilities from "./utils";
 
-import withAuthorizeCheck from './component'
+import withAuthorizeCheck from "./component";
 
-export { withAuthorizeCheck }
-export default utilities
+export { withAuthorizeCheck };
+export default utilities;

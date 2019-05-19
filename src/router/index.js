@@ -1,4 +1,4 @@
-import WebApp from './web'
-import AppRouter from './app'
+import WebApp from "./web";
+import AppRouter from "./app";
 
-export {WebApp, AppRouter}
+export { WebApp, AppRouter };

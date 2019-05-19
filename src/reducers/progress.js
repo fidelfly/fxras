@@ -1,41 +1,41 @@
-import {PROGRESS_ACTIVE, PROGRESS_CLEAR, PROGRESS_UPDATE} from "../actions";
+import { PROGRESS_ACTIVE, PROGRESS_CLEAR, PROGRESS_UPDATE } from "../actions";
 
-export default function progress( progress = {}, action) {
+export default function progress(progress = {}, action) {
     switch (action.type) {
         case PROGRESS_ACTIVE:
-            return activeProgress(progress, action)
+            return activeProgress(progress, action);
         case PROGRESS_UPDATE:
-            return updateProgress(progress, action)
+            return updateProgress(progress, action);
         case PROGRESS_CLEAR:
-            return clearProgress(progress, action)
+            return clearProgress(progress, action);
         default:
-            return progress
+            return progress;
     }
 }
 
 function activeProgress(progress, action) {
-    let newProgress = {...progress};
+    let newProgress = { ...progress };
     newProgress[action.code] = {
-        data : action.data || {status: "active", percent: 0},
-        info: action.info || {}
+        data: action.data || { status: "active", percent: 0 },
+        info: action.info || {},
     };
-    return newProgress
+    return newProgress;
 }
 
 function updateProgress(progress, action) {
-    let newProgress = {...progress};
-    let myProgress = newProgress[action.code]
+    let newProgress = { ...progress };
+    let myProgress = newProgress[action.code];
     if (myProgress) {
-        newProgress[action.code].data = action.data
-        return newProgress
+        newProgress[action.code].data = action.data;
+        return newProgress;
     }
-   return progress
+    return progress;
 }
 
 function clearProgress(progress, action) {
-    let newProgress = {...progress};
+    let newProgress = { ...progress };
     if (newProgress[action.code]) {
-        delete newProgress[action.code]
+        delete newProgress[action.code];
     }
-    return newProgress
+    return newProgress;
 }

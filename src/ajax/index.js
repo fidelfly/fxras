@@ -1,3 +1,3 @@
-import * as ajax from './axios'
+import * as ajax from "./axios";
 
-export default ajax
+export default ajax;

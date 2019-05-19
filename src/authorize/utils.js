@@ -1,44 +1,43 @@
-import { AxiosUtil, Cookies } from '../utils'
-import ajax from '../ajax'
-import { WsPath, CookieKeys, StorageKeys} from '../system'
-import {WsError} from "../errors";
+import { AxiosUtil, Cookies } from "../utils";
+import ajax from "../ajax";
+import { WsPath, CookieKeys, StorageKeys } from "../system";
+import { WsError } from "../errors";
 
-
-const basicAuthKey = makeBasicAuth("fxras", "fxras123456")
+const basicAuthKey = makeBasicAuth("fxras", "fxras123456");
 
 function makeBasicAuth(user, password) {
-    var authKey = user + ':' + password;
+    var authKey = user + ":" + password;
     return "Basic " + btoa(authKey);
 }
 
 export function getAccessToken() {
-    return Cookies.get(CookieKeys.AccessToken)
+    return Cookies.get(CookieKeys.AccessToken);
 }
 
 export function getAuthorizeToken() {
-    return Cookies.get(CookieKeys.TokenType) + ' ' + getAccessToken()
+    return Cookies.get(CookieKeys.TokenType) + " " + getAccessToken();
 }
 
 function getRefreshToken() {
-    return localStorage.getItem(StorageKeys.RefreshToken)
+    return localStorage.getItem(StorageKeys.RefreshToken);
 }
 
 function getTokenExpired() {
-    return localStorage.getItem(StorageKeys.TokenExpired)
+    return localStorage.getItem(StorageKeys.TokenExpired);
 }
 
 export function getUserID() {
-    return localStorage.getItem(StorageKeys.UserID)
+    return localStorage.getItem(StorageKeys.UserID);
 }
 
 function setToken(data) {
     Cookies.set(CookieKeys.AccessToken, data["access_token"]);
-    Cookies.set(CookieKeys.TokenType, data["token_type"])
+    Cookies.set(CookieKeys.TokenType, data["token_type"]);
     if (data["refresh_token"]) {
-        localStorage.setItem(StorageKeys.RefreshToken, data["refresh_token"])
+        localStorage.setItem(StorageKeys.RefreshToken, data["refresh_token"]);
     }
-    localStorage.setItem(StorageKeys.TokenExpired, new Date().getTime() + data["expires_in"] * 1000)
-    localStorage.setItem(StorageKeys.UserID, data["user_id"])
+    localStorage.setItem(StorageKeys.TokenExpired, new Date().getTime() + data["expires_in"] * 1000);
+    localStorage.setItem(StorageKeys.UserID, data["user_id"]);
     return data;
 }
 
@@ -49,29 +48,44 @@ function clearToken(error) {
     localStorage.removeItem(StorageKeys.TokenExpired);
     localStorage.removeItem(StorageKeys.UserID);
     if (error) {
-        return Promise.reject(error)
+        return Promise.reject(error);
     }
 }
 
 export function requestToken(formdata) {
     if (!formdata || !formdata["username"] || !formdata["password"]) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function(resolve, reject) {
             reject(new Error("No Username Or Password"));
         });
     }
     formdata["grant_type"] = "password";
     formdata["scope"] = "all";
-    let ajaxConfig = {...AxiosUtil.FormRequestConfig, headers: {Authorization : basicAuthKey}, withAuthInject: false}
+    let ajaxConfig = {
+        ...AxiosUtil.FormRequestConfig,
+        headers: { Authorization: basicAuthKey },
+        withAuthInject: false,
+    };
     return ajax.post(WsPath.OAuth.token, formdata, ajaxConfig).then(setToken);
 }
 
 export function refreshToken() {
     let key = getRefreshToken();
     if (key && key.length > 0) {
-        let ajaxConfig = {...AxiosUtil.FormRequestConfig, headers: {Authorization : basicAuthKey}, withAuthInject: false}
-        return ajax.post(WsPath.OAuth.token, {"access_token": getAccessToken(), "grant_type" : "refresh_token", "scope" : "all", "refresh_token" : key}, ajaxConfig).then(setToken).catch(clearToken);
+        let ajaxConfig = {
+            ...AxiosUtil.FormRequestConfig,
+            headers: { Authorization: basicAuthKey },
+            withAuthInject: false,
+        };
+        return ajax
+            .post(
+                WsPath.OAuth.token,
+                { access_token: getAccessToken(), grant_type: "refresh_token", scope: "all", refresh_token: key },
+                ajaxConfig
+            )
+            .then(setToken)
+            .catch(clearToken);
     } else {
-        return Promise.reject(new Error("Unauthorized"))
+        return Promise.reject(new Error("Unauthorized"));
     }
 }
 
@@ -81,8 +95,8 @@ export function isAuthorized() {
 }
 
 export function isTokenValid() {
-    let expiredValue = getTokenExpired()
-    if(expiredValue && expiredValue.length > 0) {
+    let expiredValue = getTokenExpired();
+    if (expiredValue && expiredValue.length > 0) {
         let expiredTime = Number(expiredValue);
         if (new Date().getTime() >= expiredTime) {
             return false;
@@ -99,29 +113,29 @@ export function fillAuthorizeHeader(header) {
             header["Authorization"] = accessToken;
         }
     }
-    return header
+    return header;
 }
 
 export function fillAuthorizeUrl(url) {
-    if(url) {
+    if (url) {
         let accessToken = getAccessToken();
         if (accessToken) {
-            if(url.indexOf('?') >= 0) {
-                url += '&access_token=' + accessToken
+            if (url.indexOf("?") >= 0) {
+                url += "&access_token=" + accessToken;
             } else {
-                url += '?access_token=' + accessToken
+                url += "?access_token=" + accessToken;
             }
         }
     }
-    return url
+    return url;
 }
 
-export const UnauthorizedCode = "UNAUTHORIZED"
-export const TokenExpiredCode = "TOKENEXPIRED"
+export const UnauthorizedCode = "UNAUTHORIZED";
+export const TokenExpiredCode = "TOKENEXPIRED";
 
 export function checkAuthorizeBeforeAjax(url) {
-    return new Promise(function (resolve, reject) {
-        if(WsPath.isProtected(url)) {
+    return new Promise(function(resolve, reject) {
+        if (WsPath.isProtected(url)) {
             if (isAuthorized()) {
                 if (!isTokenValid()) {
                     return refreshToken();
@@ -131,7 +145,7 @@ export function checkAuthorizeBeforeAjax(url) {
             }
         }
         resolve();
-    })
+    });
 }
 
 export function logout() {
@@ -143,7 +157,3 @@ export function logout() {
 if (!isAuthorized()) {
     clearToken();
 }
-
-
-
-

@@ -1,16 +1,16 @@
-import {defineMessages} from "react-intl";
+import { defineMessages } from "react-intl";
 
 export const actions = defineMessages({
-    "action.backup.create" : {
+    "action.backup.create": {
         id: "action.backup.create",
-        defaultMessage: "create backup"
+        defaultMessage: "create backup",
     },
-    "action.backup.restore" : {
+    "action.backup.restore": {
         id: "action.backup.restore",
-        defaultMessage: "restore backup"
+        defaultMessage: "restore backup",
     },
-    "action.backup.delete" : {
+    "action.backup.delete": {
         id: "action.backup.delete",
-        defaultMessage: "delete backups"
-    }
-})
+        defaultMessage: "delete backups",
+    },
+});

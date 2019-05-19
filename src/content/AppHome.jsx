@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import { Row, Col, Card, Icon } from 'antd';
-import {ModuleList} from "../components";
-import {defineMessages, FormattedMessage} from "react-intl";
-import '../style/home.less'
+import React, { Component } from "react";
+import { Row, Col, Card, Icon } from "antd";
+import { ModuleList } from "../components";
+import { defineMessages, FormattedMessage } from "react-intl";
+import "../style/home.less";
 
 const messages = defineMessages({
-    moduleList : {
-        id: 'home.module.list',
-        defaultMessage: 'Module List',
-        description: 'Title for module list card',
-    }
+    moduleList: {
+        id: "home.module.list",
+        defaultMessage: "Module List",
+        description: "Title for module list card",
+    },
 });
 
 class AppHome extends Component {
@@ -20,7 +20,7 @@ class AppHome extends Component {
 
     refreshModuleList = () => {
         this.moduleList.current.refresh();
-    }
+    };
 
     render() {
         return (
@@ -29,18 +29,20 @@ class AppHome extends Component {
                     <Col className="App-List" span={24}>
                         <Card bordered={false}>
                             <div className={"Card-Header"}>
-                                <h3><FormattedMessage {...messages.moduleList}/></h3>
+                                <h3>
+                                    <FormattedMessage {...messages.moduleList} />
+                                </h3>
                                 <a className={"Card-Tool"} onClick={this.refreshModuleList}>
-                                    <Icon type={"sync"}/>
+                                    <Icon type={"sync"} />
                                 </a>
                             </div>
-                            <ModuleList tableRef={this.moduleList}/>
+                            <ModuleList tableRef={this.moduleList} />
                         </Card>
                     </Col>
                 </Row>
             </div>
-            )
+        );
     }
 }
 
-export default AppHome
+export default AppHome;
