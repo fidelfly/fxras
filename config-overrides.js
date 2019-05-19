@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const appDirectory = fs.realpathSync(process.cwd());
 const path = require("path");
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-const packageJSON = require("./package.json");
+// const packageJSON = require("./package.json");
 
 function myOverride(config, env) {
     // do stuff with the webpack i18n...
@@ -63,7 +63,7 @@ module.exports = {
         return function(proxy, allowedHost) {
             // Create the default config by calling configFunction with the proxy/allowedHost parameters
             const config = configFunction(proxy, allowedHost);
-            if (config.proxy.length > 0) {
+            if (config.proxy && config.proxy.length > 0) {
                 for (let i = 0; i < config.proxy.length; i++) {
                     let p = config.proxy[i];
                     p.onProxyReq = (proxyReq, req, res) => req.setTimeout(600000);

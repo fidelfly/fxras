@@ -20,6 +20,7 @@ class AppBreadcrumb extends Component {
         let menuKey = "";
         for (let i = 0; i < paths.length; i++) {
             menuKey += PathUtil.Separator + paths[i];
+            // eslint-disable-next-line no-loop-func
             let menuItem = menus.find((item) => item.key === menuKey);
             if (menuItem !== undefined) {
                 if (menuItem.sub) {

@@ -13,12 +13,12 @@ function getLang() {
     return lang;
 }
 
-function getClientCode(validate) {
+/*function getClientCode(validate) {
     if (validate) {
         //validate the access info
     }
     return localStorage.getItem(StorageKeys.ClientCode);
-}
+}*/
 
 var myLang = getLang();
 if (!window.appLocale[myLang]) {
