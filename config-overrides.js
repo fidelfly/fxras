@@ -20,6 +20,13 @@ function myOverride(config, env) {
         useEslintRc() //eslint-disable-line
         //useEslintRc(".eslintrc.json") is also ok
     )(config, env);
+
+    config.module.rules.push({
+        loader: "webpack-ant-icon-loader",
+        enforce: "pre",
+        include: [path.resolve("node_modules/@ant-design/icons/lib/dist")],
+    });
+
     // console.log(config); //eslint-disable-line no-console
     var multiEntry = {
         "en-US": resolveApp("src/i18n/en-US.js"),

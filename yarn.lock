@@ -10778,6 +10778,11 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
+webpack-ant-icon-loader@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/webpack-ant-icon-loader/-/webpack-ant-icon-loader-1.0.5.tgz#e836282405ed12ed0e58da06799af6db12bc7fde"
+  integrity sha512-3U+d19L4I1sdUW86+iKPcepo+BzSwPqHHzVprs43RqS6lIwYh5C4PZm3XHf61hV7gnKjzcWsPFxE7bz6aeDeew==
+
 webpack-dev-middleware@^3.5.1:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-3.7.0.tgz#ef751d25f4e9a5c8a35da600c5fda3582b5c6cff"
