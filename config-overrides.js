@@ -28,18 +28,13 @@ function myOverride(config, env) {
     });
 
     // console.log(config); //eslint-disable-line no-console
-    var multiEntry = {
+    config.entry = {
         "en-US": resolveApp("src/i18n/en-US.js"),
         "zh-CN": resolveApp("src/i18n/zh-CN.js"),
         main: config.entry,
     };
-    config.entry = multiEntry;
     config.output.filename = "static/js/[name].js";
-    /*       config.output.filename = function(bundle) {
-            console.log('filename function: ' + bundle.chunk)
-            return 'static/js/' + bundle.name + '.js';
-            //'static/js/[name].js'
-        }*/
+
     config.plugins[1] = new HtmlWebpackPlugin({
         inject: true,
         template: resolveApp("public/index.html"),
@@ -73,7 +68,7 @@ module.exports = {
             if (config.proxy && config.proxy.length > 0) {
                 for (let i = 0; i < config.proxy.length; i++) {
                     let p = config.proxy[i];
-                    p.onProxyReq = (proxyReq, req, res) => req.setTimeout(600000);
+                    p.onProxyReq = (proxyReq, req) => req.setTimeout(600000);
                     config.proxy[i] = p;
                 }
             }
