@@ -17,7 +17,7 @@ function injectWebsocketAuth(url, data, config) {
         })
         .catch((error) => {
             if (error && error.code && error.code === authorize.TokenExpiredCode) {
-                return authorize.refreshToken().then((data) => {
+                return authorize.refreshToken().then(() => {
                     return sendWebsocketRequest(url, data, config);
                 });
             }

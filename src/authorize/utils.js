@@ -41,6 +41,15 @@ function setToken(data) {
     return data;
 }
 
+function getTokenData() {
+    return {
+        access_token: Cookies.get(CookieKeys.AccessToken),
+        token_type: Cookies.get(CookieKeys.TokenType),
+        refresh_token: localStorage.getItem(StorageKeys.RefreshToken),
+        user_id: localStorage.getItem(StorageKeys.UserID),
+    };
+}
+
 function clearToken(error) {
     Cookies.remove(CookieKeys.AccessToken);
     Cookies.remove(CookieKeys.TokenType);
@@ -68,9 +77,33 @@ export function requestToken(formdata) {
     return ajax.post(WsPath.OAuth.token, formdata, ajaxConfig).then(setToken);
 }
 
+var refreshLock = false;
+
+function waitRefreshTocken(resolve, reject) {
+    if (refreshLock) {
+        setTimeout(function() {
+            waitRefreshTocken(resolve, reject);
+        }, 50);
+    } else {
+        if (isTokenValid()) {
+            resolve(getTokenData());
+        } else {
+            reject(new WsError(UnauthorizedCode, "refreshToken failed"));
+        }
+    }
+}
+
 export function refreshToken() {
     let key = getRefreshToken();
     if (key && key.length > 0) {
+        if (refreshLock) {
+            console.log("refresh wait...."); //eslint-disable-line
+            return new Promise(function(resolve, reject) {
+                waitRefreshTocken(resolve, reject);
+            });
+        } else {
+            refreshLock = true;
+        }
         let ajaxConfig = {
             ...AxiosUtil.FormRequestConfig,
             headers: { Authorization: basicAuthKey },
@@ -83,7 +116,10 @@ export function refreshToken() {
                 ajaxConfig
             )
             .then(setToken)
-            .catch(clearToken);
+            .catch(clearToken)
+            .finally(() => {
+                refreshLock = false;
+            });
     } else {
         return Promise.reject(new Error("Unauthorized"));
     }
@@ -138,10 +174,12 @@ export function checkAuthorizeBeforeAjax(url) {
         if (WsPath.isProtected(url)) {
             if (isAuthorized()) {
                 if (!isTokenValid()) {
-                    return refreshToken();
+                    resolve(refreshToken());
+                    return;
                 }
             } else {
                 reject(new WsError(UnauthorizedCode, `${url} is under protected, You should grant authorized first`));
+                return;
             }
         }
         resolve();

@@ -18,7 +18,7 @@ function injectProgressAuth(url, data, config) {
         })
         .catch((error) => {
             if (error && error.code && error.code === authorize.TokenExpiredCode) {
-                return authorize.refreshToken().then((data) => {
+                return authorize.refreshToken().then(() => {
                     return sendProgressRequest(url, data, config);
                 });
             }

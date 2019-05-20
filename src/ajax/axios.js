@@ -88,7 +88,7 @@ const authRequest = (method, url, data, config = DefaultRequestConfig) => {
         .catch((error) => {
             if (error && error.code) {
                 if (error.code === authorize.TokenExpiredCode) {
-                    return authorize.refreshToken().then((data) => {
+                    return authorize.refreshToken().then(() => {
                         return request(method, url, data, config);
                     });
                 } else if (error.code === authorize.UnauthorizedCode) {
