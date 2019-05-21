@@ -89,6 +89,7 @@ const authRequest = (method, url, data, config = DefaultRequestConfig) => {
             if (error && error.code) {
                 if (error.code === authorize.TokenExpiredCode) {
                     return authorize.refreshToken().then(() => {
+                        config.headers = authorize.removeAuthorizeHeader(config.headers);
                         return request(method, url, data, config);
                     });
                 } else if (error.code === authorize.UnauthorizedCode) {

@@ -152,6 +152,13 @@ export function fillAuthorizeHeader(header) {
     return header;
 }
 
+export function removeAuthorizeHeader(header) {
+    if (header && !header["Authorization"]) {
+        delete header["Authorization"];
+    }
+    return header;
+}
+
 export function fillAuthorizeUrl(url) {
     if (url) {
         let accessToken = getAccessToken();
