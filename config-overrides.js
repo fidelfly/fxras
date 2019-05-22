@@ -47,8 +47,6 @@ function myOverride(config, env) {
         template: resolveApp("public/index.html"),
         chunks: ["en-US", "zh-CN", "main"],
         chunksSortMode: function(chunk1, chunk2) {
-            console.log(chunk1); //eslint-disable-line no-console
-            console.log(chunk2); //eslint-disable-line no-console
             var order = ["en-US", "zh-CN", "main"];
             var order1 = order.indexOf(chunk1);
             var order2 = order.indexOf(chunk2);
