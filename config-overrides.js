@@ -5,6 +5,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const path = require("path");
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 // const packageJSON = require("./package.json");
+const rewireDefinePlugin = require("@yeutech-lab/react-app-rewire-define-plugin");
 
 function myOverride(config, env) {
     // do stuff with the webpack i18n...
@@ -25,6 +26,12 @@ function myOverride(config, env) {
         loader: "webpack-ant-icon-loader",
         enforce: "pre",
         include: [path.resolve("node_modules/@ant-design/icons/lib/dist")],
+    });
+
+    config = rewireDefinePlugin(config, env, {
+        "process.env.REACT_APP_OAUTH_KEY": JSON.stringify(
+            makeBasicAuth(process.env.REACT_APP_OAUTH_CLENT, process.env.REACT_APP_OAUTH_PWD)
+        ),
     });
 
     // console.log(config); //eslint-disable-line no-console
@@ -51,6 +58,11 @@ function myOverride(config, env) {
     return config;
 }
 
+function makeBasicAuth(user, password) {
+    var authKey = user + ":" + password;
+    // return "Basic " + btoa(authKey);
+    return "Basic " + Buffer.from(authKey).toString("base64");
+}
 //module.exports = override;
 
 // If you want use https, you should use the following code and replace the cert & ca setting

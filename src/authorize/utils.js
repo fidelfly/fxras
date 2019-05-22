@@ -3,12 +3,7 @@ import ajax from "../ajax";
 import { WsPath, CookieKeys, StorageKeys } from "../system";
 import { WsError } from "../errors";
 
-const basicAuthKey = makeBasicAuth("fxras", "fxras123456");
-
-function makeBasicAuth(user, password) {
-    var authKey = user + ":" + password;
-    return "Basic " + btoa(authKey);
-}
+const basicAuthKey = process.env.REACT_APP_OAUTH_KEY;
 
 export function getAccessToken() {
     return Cookies.get(CookieKeys.AccessToken);
